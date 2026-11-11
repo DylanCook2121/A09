@@ -1,128 +1,295 @@
-/* custom property */
+
+/* custom properties */
 :root {
-	--accent-color: #800000;  /* could also be coded #800 */
-	--gradient-color: #f6bb73;
+    --accent-color: #800000;
+    --gradient-color: #f6bb73;
+    --menu-light: white;
+    --menu-mid: antiquewhite;
+    --menu-dark: #800000;
 }
 
 /* reset */
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 /* default styles */
 body {
-	font-family: Arial, Helvetica, sans-serif;
-    font-size: calc(15px + .2vw);
-	width: min(80%, 1024px);
-	line-height: 1.5;
-	margin: auto;
-	border: 2px solid var(--accent-color);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: calc(90% + .2vw);
+    line-height: 1.5;
+    width: 80%;
+    max-width: 1024px;
+    margin: auto;
+    border: 2px solid var(--accent-color);
 }
+
+a:hover, a:focus {
+    font-style: italic;
+    color: var(--accent-color);
+}
+
 h1, h2, h3, p, ul {
-	padding: .25em 0;
+    padding: .25em 0;
 }
-a:hover, a:focus{
-	font-style: italic;
-	color: var(--accent-color);
-}
+
 h1 {
-	font-size: 150%;
+    font-size: 150%;
 }
+
 h2 {
-	font-size: 130%;
-	color: var(--accent-color);
+    font-size: 130%;
+    color: var(--accent-color);
 }
+
 h3 {
-	font-size: 105%;
+    font-size: 105%;
 }
+
 ul {
-	margin-left: 2em;
+    margin-left: 2em;
 }
 
-/* the styles for the header */
+/* header */
 header {
-	line-height: 1.2;
-	border-bottom: 2px solid var(--accent-color);
-	background-image: linear-gradient(
-	    30deg, var(--gradient-color) 0%, white 30%, white 65%, var(--gradient-color) 100%);
-	& h2 {
-		font-size: 175%;
-		padding: .5em 0 0 0;
-	}
-	& h3 {
-		font-size: 130%;
-		font-style: italic;
-		padding-bottom: 1em;
-	}
-	& img {
-		width: clamp(40px, 15%, 80px);
-		float: left;
-		margin: .75em 1em;
-	}
+    line-height: 1.2;
+    border-bottom: 2px solid var(--accent-color);
+    background-image: linear-gradient(
+        30deg,
+        var(--gradient-color) 0%,
+        white 30%,
+        white 65%,
+        var(--gradient-color) 100%
+    );
 }
 
-/* the styles for the main content */
+header h2 {
+    font-size: 175%;
+    padding: .5em 0 0 0;
+}
+
+header h3 {
+    font-size: 130%;
+    font-style: italic;
+    padding-bottom: 1em;
+}
+
+header img {
+    float: left;
+    width: 12%;
+    min-width: 40px;
+    max-width: 80px;
+    height: auto;
+    margin: .75em 1em;
+}
+
+/* navigation bar */
+.navbar {
+    background-color: var(--accent-color);
+}
+
+.navbar ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.navbar a {
+    display: block;
+    padding: 1em;
+    margin: 0 1px 2px;
+    text-decoration: none;
+    color: var(--menu-light);
+}
+
+.navbar a:hover,
+.navbar a:focus,
+.navbar a.current {
+    background-color: var(--menu-mid);
+    color: var(--menu-dark);
+    font-style: normal;
+}
+
+/* horizontal main menu */
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.menu > li {
+    flex-basis: 20%;
+    text-align: center;
+    position: relative;
+}
+
+.menu > li:first-child > a {
+    margin-left: 0;
+}
+
+.menu > li:last-child > a {
+    margin-right: 0;
+}
+
+.menu small {
+    margin-left: .25em;
+}
+
+/* vertical dropdown menus */
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--accent-color);
+    z-index: 10;
+}
+
+.menu > li:hover > .submenu,
+.menu > li:focus-within > .submenu {
+    display: block;
+}
+
+.submenu > li {
+    text-align: left;
+}
+
+.submenu > li a {
+    margin: 0 2px 2px;
+    padding: 1em;
+    color: var(--menu-light);
+}
+
+.submenu > li a:hover,
+.submenu > li a:focus {
+    color: var(--menu-dark);
+}
+
+/* main content */
 main {
-	display: flex;
-	clear: left;
-	padding: 0 1em 1em;
-	& blockquote {
-		font-style: italic;
-		padding-left: 1em;
-	}
-	& h3 + img { /* speaker images */
-		width: clamp(40px, 50%, 75px);
-		border: 4px double var(--accent-color);
-		border-radius: 10px;
-	}
+    display: flex;
+    padding: 0 1em 1em;
+    gap: 1em;
 }
 
-/* the styles for the section */
-section {
-	flex-basis: 75%;
-	padding-left: .5em;
-	& img {
-		width: clamp(100px, 50%, 250px);
-		float: right;
-		margin: 0 1em .25em;
-	}
+main blockquote {
+    font-style: italic;
+    padding-left: 1em;
 }
 
-/* the styles for the aside */
-aside {
-	flex-basis: 25%;
-	padding-right: .5em;
+main img {
+    border: 4px double var(--accent-color);
+    border-radius: 10px;
 }
 
-/* the styles for the footer */
-footer {
-	background-color: var(--accent-color);
-	& p {
-		text-align: center;
-		color: white;
-		padding: 1em 0;
-	}
+/* two-column layout */
+main > aside {
+    flex: 0 0 25%;
+    min-width: 0;
 }
 
-/* CSS class */
+main > section {
+    flex: 1 1 75%;
+    min-width: 0;
+}
+
+/* guest speakers */
+aside h3 {
+    margin-top: .35em;
+}
+
+aside img {
+    width: 55%;
+    min-width: 40px;
+    max-width: 75px;
+    height: auto;
+}
+
+/* featured speaker */
 .featured {
-	border-top: 2px solid var(--accent-color);
-	border-bottom: 2px solid var(--accent-color);
-	padding: .5em 0 1em;
+    border-top: 2px solid var(--accent-color);
+    border-bottom: 2px solid var(--accent-color);
+    padding: .5em 0;
+    display: flow-root;
 }
-.speaker {
-	& h1 {
-		color: var(--accent-color);
-	}
-	& h2 {
-		color: black;
-	}
-	& p {
-		padding: .5em 0; 
-	}	
+
+/* dinosaur image */
+main > section img {
+    float: right;
+    width: 45%;
+    min-width: 100px;
+    max-width: 250px;
+    height: auto;
+    margin: .25em 0 .75em 1em;
 }
+
+/* Scott Sampson speaker page */
+.speaker h1 {
+    color: var(--accent-color);
+}
+
+.speaker h2 {
+    color: black;
+}
+
+.speaker p {
+    padding: .5em 0;
+}
+
+/* ticket list with hollow circles */
+.ticket-list {
+    list-style-type: circle;
+    margin-left: 2em;
+}
+
+/* return to homepage */
+.return-home {
+    padding: .5em 1em 1em;
+}
+
+/* footer */
+footer {
+    background-color: var(--accent-color);
+}
+
+footer p {
+    text-align: center;
+    color: white;
+    padding: 1em;
+}
+
+/* special text */
 .large {
-	font-size: 125%;
+    font-size: 125%;
+}
+
+/* smaller screens */
+@media (max-width: 560px) {
+    body {
+        width: 96%;
+    }
+
+    main {
+        gap: .65em;
+        padding: 0 .5em 1em;
+    }
+
+    main > aside {
+        flex-basis: 30%;
+        overflow-wrap: anywhere;
+    }
+
+    main > section {
+        flex-basis: 70%;
+    }
+
+    main > section img {
+        width: 50%;
+    }
+
+    .menu > li {
+        flex-basis: 50%;
+    }
 }
